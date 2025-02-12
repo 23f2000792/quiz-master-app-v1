@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to Admin Dashboard</h1>
+    
+    <h2>Subjects</h2>
+    <a href="{{ url_for('new_subject') }}">Add New Subject</a>
+    <ul>
+        {% for subject in subjects %}
+            <li>
+                {{ subject.name }} - {{ subject.description }}
+                <a href="{{ url_for('edit_subject', id=subject.id) }}">Edit</a>
+                <form action="{{ url_for('delete_subject', id=subject.id) }}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Users</h2>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.full_name }} - {{ user.username }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
