@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quizzes</title>
+</head>
+<body>
+    <h1>Quizzes</h1>
+    <ul>
+        {% for quiz in quizzes %}
+            <li>
+                {{ quiz.date_of_quiz }} | Duration: {{ quiz.time_duration }}
+                <a href="{{ url_for('attempt_quiz', quiz_id=quiz.id) }}">Start Quiz</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
