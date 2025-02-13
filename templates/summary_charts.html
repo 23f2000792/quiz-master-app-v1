@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block remtitle %}Summary Charts{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    {% include "admin_navbar.html" %}
+
+    <!-- Subject-wise Top Scores Chart -->
+    <h2>Summary Charts</h2>
+
+    <!-- Bar Chart: Subject-wise Top Scores -->
+    <h4>Subject-wise Top Scores</h4>
+    <canvas id="subjectChart"></canvas>
+
+    <!-- Pie Chart: Weak and Strong Areas -->
+    <h4>Weak and Strong Areas</h4>
+    <canvas id="strengthChart"></canvas>
+
+    <!-- Chart.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Data for Charts -->
+    <script type="text/javascript">
+        const subjectScores = {{ scores_by_subject | tojson }};
+        
+        // Bar Chart Configuration
+        const subjectCtx = document.getElementById('subjectChart').getContext('2d');
+        new Chart(subjectCtx, {
+            type: 'bar',
+            data: {
+                labels: Object.keys(subjectScores),
+                datasets: [{
+                    label: 'Top Scores',
+                    data: Object.values(subjectScores),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Pie Chart Configuration
+        const strengthCtx = document.getElementById('strengthChart').getContext('2d');
+        new Chart(strengthCtx, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(subjectScores),
+                datasets: [{
+                    data: Object.values(subjectScores),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+
+</div>
+{% endblock %}
