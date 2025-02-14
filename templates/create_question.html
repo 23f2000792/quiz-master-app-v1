@@ -6,10 +6,10 @@
 <div class="container mt-4">
     {% include "admin_navbar.html" %}
     
-    <h2 class="text-center">Create New Question</h2>
+    <h2 class="text-center mt-4">Create New Question</h2>
 
     <!-- Chapter Info -->
-    <div class="card mb-3 shadow">
+    <div class="card mb-3">
         <div class="card-body">
             <h5><strong>Chapter ID:</strong> {{ quiz.chapter.id }}</h5>
         </div>
@@ -25,8 +25,8 @@
             <textarea id="question_statement" name="question_statement" rows="3" class="form-control" required></textarea>
         </div>
 
-        <!-- Single Option Correct Box -->
-        <div class="card border-primary mb-3 shadow">
+        <!-- Options Box -->
+        <div class="card border-primary mt-4">
             <div class="card-header bg-primary text-white">
                 <strong>Single Option Correct</strong>
             </div>
@@ -41,15 +41,16 @@
                 <!-- Correct Option -->
                 <div class="form-group">
                     <label for="correct_option">Correct Option:</label>
-                    <input type="number" id="correct_option" name="correct_option" min="1" max="4" class="form-control"
-                           placeholder="Enter option number (1-4)" required />
+                    <input type="number" id="correct_option" name="correct_option" min="1" max="4" class="form-control" placeholder="Enter option number (1-4)" required />
                 </div>
             </div>
         </div>
 
         <!-- Buttons -->
-        <button type="submit" class="btn btn-success">Save and Next</button>
-        <button type="button" onclick="window.location.href='/quiz_management';" class="btn btn-secondary">Close</button>
+         <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success">Save and Next</button>
+            <button type="button" onclick="window.location.href='/quiz_management';" class="btn btn-secondary">Close</button>
+        </div>
     </form>
 </div>
 {% endblock %}

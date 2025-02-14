@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block remtitle %}Quiz Results{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "user_navbar.html" %}
+
+    <h2 class="text-center mt-4">Quiz Results</h2>
+
+    <div class="card shadow-lg mt-4">
+        <div class="card-body">
+            <h4><strong>Quiz Name:</strong> {{ quiz.name }}</h4>
+            <p><strong>Subject:</strong> {{ quiz.chapter.subject.name }}</p>
+            <p><strong>Chapter:</strong> {{ quiz.chapter.name }}</p>
+            <p><strong>Number of Questions:</strong> {{ quiz.questions|length }}</p>
+            <p><strong>Scheduled Date:</strong> {{ quiz.date_of_quiz.strftime('%Y-%m-%d') }}</p>
+            <p><strong>Time Duration:</strong> {{ quiz.time_duration }} minutes</p>
+            <hr>
+            <h4 class="text-success text-center">Your Score: {{ score.total_score }}/{{ quiz.questions|length }}</h4>
+
+            <div class="text-center mt-4">
+                <a href="/user_scores" class="btn btn-primary">Back to Scores</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

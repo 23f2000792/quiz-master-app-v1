@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container mt-4">
     {% include "admin_navbar.html" %}
-    <h2 class="text-center">Edit Chapter</h2>
+    <h2 class="text-center mt-4">Edit Chapter</h2>
     
     <form method="POST" action="{{ url_for('edit_chapter', chapter_id=chapter.id) }}">
         <div class="form-group">
@@ -29,8 +29,10 @@
             <textarea id="description" name="description" rows="4" class="form-control">{{ chapter.description }}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-success">Save Changes</button>
-        <button type="button" onclick="window.location.href='/admin_dashboard';" class="btn btn-secondary">Cancel</button>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success mt-4">Save Changes</button>
+            <button type="button" onclick="window.location.href='/admin_dashboard';" class="btn btn-secondary">Cancel</button>
+        </div> 
     </form>
 </div>
 {% endblock %}

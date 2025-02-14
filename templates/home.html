@@ -12,36 +12,14 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 
-<body>
-    <!-- Header Section -->
-    <div class="header">
-        <h1>Welcome to Quiz Master</h1>
-        <p>Challenge yourself with fun, engaging quizzes on a variety of topics!</p>
-        <div>
-            <a href="{{ url_for('login') }}" class="btn btn-light text-dark shadow-sm">Login</a>
-            <a href="{{ url_for('register') }}" class="btn btn-outline-light shadow-sm">Register Now</a>
+<body class="d-flex align-items-center justify-content-center vh-100" style="background-color: #e3f2fd;">
+    <div class="text-center">
+        <h1 class="display-4 fw-bold text-dark">Welcome to Quiz Master</h1>
+        <p class="lead text-dark">Challenge yourself with engaging quizzes!</p>
+        <div class="mt-4">
+            <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg me-2 shadow">Login</a>
+            <a href="{{ url_for('register') }}" class="btn btn-outline-dark btn-lg shadow">Register Now</a>
         </div>
-    </div>
-
-    <!-- Features Section -->
-    <div class="features">
-        <div class="feature-card">
-            <h3>Engaging Questions</h3>
-            <p>Answer fun and challenging questions designed to test your knowledge and skills.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Multiple Topics</h3>
-            <p>Choose from a variety of topics like Science, Economics, Mathematics, and more.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Leaderboard</h3>
-            <p>Track your progress and compete with friends using our interactive leaderboard feature!</p>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2025 Quiz Master. Built with <i class="fas fa-heart"></i> by Krish Gupta.</p>
     </div>
 
     <!-- MDB -->

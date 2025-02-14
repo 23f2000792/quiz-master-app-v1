@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block remtitle %}User Summary Charts{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "user_navbar.html" %}
+
+    <h2 class="text-center mt-4">Your Summary Charts</h2>
+
+    <div class="d-flex justify-content-center align-items-center flex-wrap mt-4">
+        <!-- Bar Graph forSubject-wise Scores -->
+        <div class="card shadow-lg p-4 m-3 text-center" style="width: 45%; height: 500px;">
+            <h4>Your Scores per Subject</h4>
+            <img src="{{ url_for('static', filename='images/user_scores_chart.png') }}" class="img-fluid" alt="User Scores Chart">
+        </div>
+
+        <!-- Pie Chart for Month-wise Quiz Attempts -->
+        <div class="card shadow-lg p-4 m-3 text-center" style="width: 45%; height: 500px;">
+            <h4>Your Quiz Attempts per Month</h4>
+            <img src="{{ url_for('static', filename='images/user_attempts_chart.png') }}" class="img-fluid" alt="User Attempts Chart">
+        </div>
+    </div>
+
+    <!-- Refresh Button -->
+    <div class="text-center mt-4">
+        <a href="{{ url_for('generate_user_charts') }}" class="btn btn-primary btn-lg">Refresh Charts</a>
+    </div>
+</div>
+{% endblock %}
