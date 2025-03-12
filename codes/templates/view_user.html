@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block remtitle %}User Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "admin_navbar.html" %}
+
+    <h2 class="text-center mt-4">User Details</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5><strong>Full Name:</strong> {{ user.full_name }}</h5>
+            <h5><strong>Username:</strong> {{ user.username }}</h5>
+            <h5><strong>Qualification:</strong> {{ user.qualification or "N/A" }}</h5>
+            <h5><strong>Date of Birth:</strong> {{ user.dob.strftime('%Y-%m-%d') }}</h5>
+            <h5><strong>Admin:</strong> {{ "Yes" if user.is_admin else "No" }}</h5>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/admin_dashboard" class="btn btn-secondary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

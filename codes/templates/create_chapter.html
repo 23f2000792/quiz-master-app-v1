@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block remtitle %}Create New Chapter{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "admin_navbar.html" %}
+    <h2 class="text-center mt-4">Create New Chapter</h2>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="subject_id" class="mt-4">Select Subject:</label>
+            <select id="subject_id" name="subject_id" class="form-control" required>
+                <option value="" disabled selected>Choose a Subject</option>
+                {% for subject in subjects %}
+                <option value="{{ subject.id }}">{{ subject.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Chapter Name:</label>
+            <input type="text" id="name" name="name" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" class="form-control"></textarea>
+        </div>
+
+        <!-- Save and Cancel Buttons -->
+         <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary mt-4">Save</button>
+            <button type="button" onclick="window.location.href='/admin_dashboard';" class="btn btn-secondary">Cancel</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

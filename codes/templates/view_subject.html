@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block remtitle %}Subject Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "admin_navbar.html" %}
+
+    <h2 class="text-center mt-4">Subject Details</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5><strong>Subject Name:</strong> {{ subject.name }}</h5>
+            <h5><strong>Description:</strong> {{ subject.description or "No description available" }}</h5>
+        </div>
+    </div>
+
+    <h3 class="mt-4">Chapters</h3>
+    {% if subject.chapters %}
+    <ul class="list-group">
+        {% for chapter in subject.chapters %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><strong>{{ chapter.name }}</strong></span>
+            <a href="/edit_chapter/{{ chapter.id }}" class="btn btn-warning btn-sm">Edit</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-muted">No chapters available.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="/admin_dashboard" class="btn btn-secondary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

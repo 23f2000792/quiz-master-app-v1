@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block remtitle %}Admin Summary Charts{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "admin_navbar.html" %}
+
+    <div class="d-flex justify-content-center align-items-center flex-wrap mt-4">
+        <!-- Bar Graph for Subject-wise Top Scorers -->
+        <div class="card shadow-lg p-4 m-3 text-center" style="width: 45%; height: 500px;">
+            <h4>Top Scorers per Subject</h4>
+            <img src="{{ url_for('static', filename='images/top_scorers_chart.png') }}" class="img-fluid" alt="Top Scorers Chart">
+        </div>
+
+        <!-- Pie Chart for Subject-wise Quiz Attempts -->
+        <div class="card shadow-lg p-4 m-3 text-center" style="width: 45%; height: 500px;">
+            <h4>User Attempts per Subject</h4>
+            <img src="{{ url_for('static', filename='images/admin_attempts_chart.png') }}" class="img-fluid" alt="User Attempts Chart">
+        </div>
+    </div>
+
+    <!-- Refresh Button -->
+    <div class="text-center mt-4">
+        <a href="{{ url_for('generate_charts') }}" class="btn btn-primary btn-lg">Refresh Charts</a>
+    </div>
+</div>
+{% endblock %}

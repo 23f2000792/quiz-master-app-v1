@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block remtitle %}View Quiz{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "user_navbar.html" %}
+
+    <h2 class="text-center mt-4">Quiz Details</h2>
+
+    <div class="card shadow-lg mt-4">
+        <div class="card-body">
+            <h5><strong>Quiz ID:</strong> {{ quiz.id }}</h5>
+            <h5><strong>Subject:</strong> {{ quiz.chapter.subject.name }}</h5>
+            <h5><strong>Chapter:</strong> {{ quiz.chapter.name }}</h5>
+            <h5><strong>No. of Questions:</strong> {{ quiz.questions|length }}</h5>
+            <h5><strong>Scheduled Date:</strong> {{ quiz.date_of_quiz.strftime('%Y-%m-%d') }}</h5>
+            <h5><strong>Duration:</strong> {{ quiz.time_duration }} minutes</h5>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="button" onclick="window.history.back();" class="btn btn-secondary">Close</button>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block remtitle %} Register {% endblock %}
+{% block content %}
+
+<section class="vh-100 d-flex align-items-center justify-content-center" style="background-color: #e3f2fd;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 col-xl-6"> 
+                <div class="card shadow-lg border-0" style="border-radius: 15px; background: rgba(255, 255, 255, 0.95);">
+                    <div class="card-body p-5">
+                        <h3 class="mb-4 text-center text-primary fw-bold">Welcome to Quiz Master</h3>
+                        <form method="POST" action="/register">
+
+                            <div class="mb-3">
+                                <label class="form-label" for="username">Username (Email)</label>
+                                <input type="email" id="username" name="username" class="form-control form-control-lg shadow-sm" required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="password">Password</label>
+                                <input type="password" id="password" name="password" class="form-control form-control-lg shadow-sm" required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="full_name">Full Name</label>
+                                <input type="text" id="full_name" name="full_name" class="form-control form-control-lg shadow-sm" required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="qualification">Qualification</label>
+                                <input type="text" id="qualification" name="qualification" class="form-control form-control-lg shadow-sm" required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="dob">Date of Birth</label>
+                                <input type="date" id="dob" name="dob" class="form-control form-control-lg shadow-sm" required />
+                            </div>
+
+                            <div class="text-center pt-3">
+                                <button class="btn btn-primary btn-lg w-100 shadow-sm" type="submit">Register</button>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <p class="mb-0">Already have an account? 
+                                    <a href="/login" class="btn btn-outline-dark btn-sm">Login here</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

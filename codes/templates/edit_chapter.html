@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block remtitle %}Edit Chapter{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "admin_navbar.html" %}
+    <h2 class="text-center mt-4">Edit Chapter</h2>
+    
+    <form method="POST" action="{{ url_for('edit_chapter', chapter_id=chapter.id) }}">
+        <div class="form-group">
+            <label for="subject_id">Select Subject:</label>
+            <select id="subject_id" name="subject_id" class="form-control" required>
+                {% for subject in subjects %}
+                <option value="{{ subject.id }}" {% if subject.id == chapter.subject_id %}selected{% endif %}>
+                    {{ subject.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Chapter Name:</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ chapter.name }}" required />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" class="form-control">{{ chapter.description }}</textarea>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success mt-4">Save Changes</button>
+            <button type="button" onclick="window.location.href='/admin_dashboard';" class="btn btn-secondary">Cancel</button>
+        </div> 
+    </form>
+</div>
+{% endblock %}

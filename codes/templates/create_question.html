@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block remtitle %}New Question{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "admin_navbar.html" %}
+    
+    <h2 class="text-center mt-4">Create New Question</h2>
+
+    <!-- Chapter Info -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5><strong>Chapter ID:</strong> {{ quiz.chapter.id }}</h5>
+        </div>
+    </div>
+
+    <!-- Form to create a new question -->
+    <form method="POST" action="{{ url_for('create_question', quiz_id=quiz.id) }}">
+        <input type="hidden" name="quiz_id" value="{{ quiz.id }}" />
+
+        <!-- Question Statement -->
+        <div class="form-group">
+            <label for="question_statement">Question Statement:</label>
+            <textarea id="question_statement" name="question_statement" rows="3" class="form-control" required></textarea>
+        </div>
+
+        <!-- Options Box -->
+        <div class="card border-primary mt-4">
+            <div class="card-header bg-primary text-white">
+                <strong>Single Option Correct</strong>
+            </div>
+            <div class="card-body">
+                {% for i in range(1, 5) %}
+                <div class="form-group">
+                    <label for="option_{{ i }}">Option {{ i }}:</label>
+                    <input type="text" id="option_{{ i }}" name="option_{{ i }}" class="form-control" required />
+                </div>
+                {% endfor %}
+
+                <!-- Correct Option -->
+                <div class="form-group">
+                    <label for="correct_option">Correct Option:</label>
+                    <input type="number" id="correct_option" name="correct_option" min="1" max="4" class="form-control" placeholder="Enter option number (1-4)" required />
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+         <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success">Save and Next</button>
+            <button type="button" onclick="window.location.href='/quiz_management';" class="btn btn-secondary">Close</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

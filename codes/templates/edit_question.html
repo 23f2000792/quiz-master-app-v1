@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block remtitle %}Edit Question{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "admin_navbar.html" %}
+    
+    <h2 class="text-center mt-4">Edit Question</h2>
+
+    <!-- Chapter Info -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5><strong>Chapter ID:</strong> {{ question.quiz.chapter.id }}</h5>
+        </div>
+    </div>
+
+    <!-- Form to edit the question -->
+    <form method="POST" action="{{ url_for('edit_question', question_id=question.id) }}">
+        <input type="hidden" name="quiz_id" value="{{ question.quiz.id }}" />
+
+        <!-- Question Statement -->
+        <div class="form-group mt-4">
+            <label for="question_statement"><strong>Question Statement:</strong></label>
+            <textarea id="question_statement" name="question_statement" rows="3" class="form-control" required>{{ question.question_statement }}</textarea>
+        </div>
+
+        <!-- Options -->
+        <div class="card border-primary mb-3 mt-4">
+            <div class="card-header bg-primary text-white">
+                <strong>Single Option Correct</strong>
+            </div>
+            <div class="card-body">
+                {% set options = question.options.split('|') %}
+                {% for i in range(4) %}
+                <div class="form-group">
+                    <label for="option_{{ i+1 }}"><strong>Option {{ i+1 }}:</strong></label>
+                    <input type="text" id="option_{{ i+1 }}" name="option_{{ i+1 }}" class="form-control" value="{{ options[i] }}" required />
+                </div>
+                {% endfor %}
+
+                <!-- Correct Option -->
+                <div class="form-group">
+                    <label for="correct_option"><strong>Correct Option:</strong></label>
+                    <input type="number" id="correct_option" name="correct_option" min="1" max="4" class="form-control" value="{{ question.correct_option }}" required />
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+         <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success">Save Changes</button>
+            <button type="button" onclick="window.location.href='/quiz_management';" class="btn btn-secondary">Cancel</button>
+         </div>
+    </form>
+</div>
+{% endblock %}

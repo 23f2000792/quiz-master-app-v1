@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block remtitle %}Create New Subject{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "admin_navbar.html" %}
+    
+    <h2 class="text-center mt-4">Create New Subject</h2>
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="name" class="mt-4">Subject Name:</label>
+            <input type="text" id="name" name="name" class="form-control" required />
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" class="form-control"></textarea>
+        </div>
+
+        <!-- Buttons -->
+         <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary mt-4">Save</button>
+            <button type="button" onclick="window.location.href='/admin_dashboard';" class="btn btn-secondary">Cancel</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

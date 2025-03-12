@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block remtitle %}Quiz Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "admin_navbar.html" %}
+
+    <h2 class="text-center mt-4">Quiz Details</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5><strong>Quiz Name:</strong> {{ quiz.name }}</h5>
+            <h5><strong>Chapter:</strong> {{ quiz.chapter.name }}</h5>
+            <h5><strong>Date of Quiz:</strong> {{ quiz.date_of_quiz.strftime('%Y-%m-%d') }}</h5>
+            <h5><strong>Time Duration:</strong> {{ quiz.time_duration }} minutes</h5>
+            <h5><strong>Remarks:</strong> {{ quiz.remarks or "No remarks" }}</h5>
+        </div>
+    </div>
+
+    <h3 class="mt-4">Questions</h3>
+    {% if quiz.questions %}
+    <ul class="list-group">
+        {% for question in quiz.questions %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><strong>{{ question.question_statement }}</strong></span>
+            <a href="/edit_question/{{ question.id }}" class="btn btn-warning btn-sm">Edit</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-muted">No questions available.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="/admin_dashboard" class="btn btn-secondary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

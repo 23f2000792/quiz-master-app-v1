@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block remtitle %}Search Results{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "user_navbar.html" %}
+
+    <h2 class="text-center mt-4">Search Results for "{{ search_query if search_query else 'your query' }}"</h2>
+
+    <!-- Subjects Section -->
+    {% if subjects %}
+    <div class="card my-3">
+        <div class="card-header bg-success text-white"><strong>Subjects</strong></div>
+        <div class="card-body">
+            <ul class="list-group">
+                {% for subject in subjects %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><strong>{{ subject.name }}</strong></span>
+                    <a href="{{ url_for('view_subject_user', subject_id=subject.id) }}" class="btn btn-sm btn-info">View</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Quizzes Section -->
+    {% if quizzes %}
+    <div class="card my-3">
+        <div class="card-header bg-warning text-dark"><strong>Quizzes</strong></div>
+        <div class="card-body">
+            <ul class="list-group">
+                {% for quiz in quizzes %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><strong>{{ quiz.name }}</strong> - <small>{{ quiz.date_of_quiz.strftime('%Y-%m-%d') }}</small></span>
+                    <a href="/view_quiz_user/{{ quiz.id }}" class="btn btn-sm btn-info">View</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Scores Section -->
+    {% if scores %}
+    <div class="card my-3">
+        <div class="card-header bg-primary text-white"><strong>Scores</strong></div>
+        <div class="card-body">
+            <ul class="list-group">
+                {% for score in scores %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><strong>{{ score.quiz.name }}</strong> - <small>Score: {{ score.total_score }}/{{ score.quiz.questions|length }}</small></span>
+                    <a href="/quiz_results/{{ score.quiz.id }}" class="btn btn-sm btn-info">View</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if not subjects and not quizzes and not scores %}
+    <p class="text-center text-danger mt-4">No results found for "{{ search_query }}".</p>
+    {% endif %}
+</div>
+{% endblock %}

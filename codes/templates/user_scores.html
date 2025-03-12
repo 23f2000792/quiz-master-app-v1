@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block remtitle %}Quiz Scores{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    {% include "user_navbar.html" %}
+
+    <!-- Title -->
+    <h2 class="text-center mt-4">Quiz Scores</h2>
+
+    <div class="card shadow-lg mt-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Quiz Name</th>
+                        <th>No. of Questions</th>
+                        <th>Date</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for score in user_scores %}
+                    <tr>
+                        <td>{{ score.quiz.id }}</td>
+                        <td>{{ score.quiz.name }}</td>
+                        <td>{{ score.quiz.questions|length }}</td>
+                        <td>{{ score.quiz.date_of_quiz.strftime('%Y-%m-%d') }}</td>
+                        <td><strong>{{ score.total_score }}/{{ score.quiz.questions|length }}</strong></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
